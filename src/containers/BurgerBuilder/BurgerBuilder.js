@@ -79,9 +79,9 @@ class BurgerBuilder extends Component {
     this.updatePurchaseState(updatedIngredients);
   };
 
-  purchaseHandler() {
+  purchaseHandler = () => {
     this.setState({ purchasing: true });
-  }
+  };
 
   render() {
     const disabledInfo = {
@@ -93,7 +93,7 @@ class BurgerBuilder extends Component {
 
     return (
       <Aux>
-        <Model>
+        <Model show={this.state.purchasing}>
           <OrderSummary ingredients={this.state.ingredients} />
         </Model>
         <Burger ingredients={this.state.ingredients} />
