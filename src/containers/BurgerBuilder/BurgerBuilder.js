@@ -109,6 +109,7 @@ class BurgerBuilder extends Component {
             ingredients={this.state.ingredients}
             purchaseCancelled={this.purchaseCancelHandler}
             purchaseContinued={this.purchaseContinueHandler}
+            price={this.state.totelPrice}
           />
         </Model>
         <Burger ingredients={this.state.ingredients} />
