@@ -20,7 +20,7 @@ class BurgerBuilder extends Component {
   state = {
     ingredients: null,
 
-    totelPrice: 4,
+    totalPrice: 4,
     purchasable: false,
     purchasing: false,
     loading: false,
@@ -61,10 +61,10 @@ class BurgerBuilder extends Component {
 
     //Price
     const priceAddition = INGREDIENTS_PRICES[type];
-    const oldPrice = this.state.totelPrice;
+    const oldPrice = this.state.totalPrice;
     const newPrice = oldPrice + priceAddition;
 
-    this.setState({ totelPrice: newPrice, ingredients: updatedIngredients });
+    this.setState({ totalPrice: newPrice, ingredients: updatedIngredients });
     this.updatePurchaseState(updatedIngredients);
   };
 
@@ -83,10 +83,10 @@ class BurgerBuilder extends Component {
 
     //Price
     const priceDeduction = INGREDIENTS_PRICES[type];
-    const oldPrice = this.state.totelPrice;
+    const oldPrice = this.state.totalPrice;
     const newPrice = oldPrice - priceDeduction;
 
-    this.setState({ totelPrice: newPrice, ingredients: updatedIngredients });
+    this.setState({ totalPrice: newPrice, ingredients: updatedIngredients });
     this.updatePurchaseState(updatedIngredients);
   };
 
@@ -99,32 +99,23 @@ class BurgerBuilder extends Component {
   };
 
   purchaseContinueHandler = () => {
-    // alert('you continued');
-    this.setState({ loading: true });
-    const order = {
-      ingredients: this.state.ingredients,
-      price: this.state.totelPrice.toFixed(2),
-      customer: {
-        name: 'Inbal',
-        address: {
-          street: 'teststreet1',
-          zip: '158763',
-          country: 'Israel',
-        },
-        email: 'inbal0012@gmail.com',
-      },
-      deliveryMethod: 'fastest',
-    };
-    axios
-      .post('/orders.json', order)
-      .then((response) => {
-        console.log(response);
-        this.setState({ loading: false, purchasing: false });
-      })
-      .catch((error) => {
-        console.log(error);
-        this.setState({ loading: false, purchasing: false });
-      });
+    console.log('BurgerBuilder - purchaseContinueHandler');
+
+    const queryParams = [];
+    for (let i in this.state.ingredients) {
+      queryParams.push(
+        encodeURIComponent(i) +
+          '=' +
+          encodeURIComponent(this.state.ingredients[i])
+      );
+    }
+    queryParams.push('price=' + this.state.totalPrice);
+
+    const queryString = queryParams.join('&');
+    this.props.history.push({
+      pathname: '/checkout',
+      search: '?' + queryString,
+    });
   };
 
   render() {
@@ -152,7 +143,7 @@ class BurgerBuilder extends Component {
             disabled={disabledInfo}
             purchasable={this.state.purchasable}
             ordered={this.purchaseHandler}
-            price={this.state.totelPrice}
+            price={this.state.totalPrice}
           />
         </Aux>
       );
@@ -161,7 +152,7 @@ class BurgerBuilder extends Component {
           ingredients={this.state.ingredients}
           purchaseCancelled={this.purchaseCancelHandler}
           purchaseContinued={this.purchaseContinueHandler}
-          price={this.state.totelPrice}
+          price={this.state.totalPrice}
         />
       );
     }
