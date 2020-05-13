@@ -7,6 +7,8 @@ import Spinner from '../../../components/UI/Spinner/Spinner';
 import Input from '../../../components/UI/Input/Input';
 
 class ContactData extends Component {
+  /* orderForm includes the fields we want to receive from the user 
+  with a nested of all the criterias for your custom input element */
   state = {
     orderForm: {
       name: {
@@ -105,9 +107,7 @@ class ContactData extends Component {
     }
     let form = (
       <form>
-        {formElementArray.map((
-          element //elementType: 'select',elementConfig
-        ) => (
+        {formElementArray.map((element) => (
           <Input
             key={element.id}
             elementType={element.config.elementType}
@@ -119,7 +119,6 @@ class ContactData extends Component {
         <Button btnType='Success' clicked={this.orderHandler}>
           ORDER
         </Button>
-        {/*Todo add onClick*/}
       </form>
     );
     if (this.state.loading) {
