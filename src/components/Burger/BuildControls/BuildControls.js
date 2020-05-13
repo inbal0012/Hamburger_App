@@ -7,16 +7,15 @@ const controls = [
   { label: 'Salad', type: 'salad' },
   { label: 'Meat', type: 'meat' },
   { label: 'Cheese', type: 'cheese' },
-  { label: 'Bacon', type: 'bacon' }
+  { label: 'Bacon', type: 'bacon' },
 ];
 
-const buildControls = props => (
+const buildControls = (props) => (
   <div className={classes.BuildControls}>
     <p>
-      {' '}
-      Current Price: <strong>{props.price.toFixed(2)}</strong>{' '}
+      Current Price: <strong>{props.price.toFixed(2)}</strong>
     </p>
-    {controls.map(ctrl => (
+    {controls.map((ctrl) => (
       <BuildControl
         key={ctrl.label}
         label={ctrl.label}
