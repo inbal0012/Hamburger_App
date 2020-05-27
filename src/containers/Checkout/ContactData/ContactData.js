@@ -8,7 +8,6 @@ import Spinner from '../../../components/UI/Spinner/Spinner';
 import Input from '../../../components/UI/Input/Input';
 import withErrorHandler from '../../../hoc/withErrorHandler/withErrorHandler';
 import * as actions from '../../../store/actions/index';
-import Orders from '../../Orders/Orders';
 
 class ContactData extends Component {
   /* orderForm includes fields we want to receive from the user 
