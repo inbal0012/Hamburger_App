@@ -21,7 +21,7 @@ class Orders extends Component {
             <Order
               price={order.price}
               ingredients={order.ingredients}
-              orderData={order.o}
+              orderData={order.orderData}
               key={order.id}
             />
           ))}
