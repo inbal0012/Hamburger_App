@@ -9,7 +9,7 @@ import Spinner from '../../components/UI/Spinner/Spinner';
 
 class Orders extends Component {
   componentDidMount() {
-    this.props.fetchOrders();
+    this.props.onFetchOrders();
   }
 
   render() {
@@ -17,13 +17,17 @@ class Orders extends Component {
     if (!this.props.loading) {
       loading = (
         <div>
-          {this.props.orders.map((order) => (
-            <Order
-              price={order.price}
-              ingredients={order.ingredients}
-              key={order.id}
-            />
-          ))}
+          {this.props.orders.map((order) => {
+            console.log(order);
+            return (
+              <Order
+                price={order.price}
+                ingredients={order.ingredients}
+                orderData={order.orderData}
+                key={order.id}
+              />
+            );
+          })}
         </div>
       );
     }

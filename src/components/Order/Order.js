@@ -32,9 +32,16 @@ const order = (props) => {
 
   return (
     <div className={classes.Order}>
+      <p>
+        name: <strong>{props.orderData.name}</strong>, email:{' '}
+        <strong>{props.orderData.email}</strong>
+      </p>
       <p>Ingredients: {ingOutput}</p>
       <p>
         Price <strong>{props.price} USD</strong>
+      </p>
+      <p>
+        {props.orderData.street}, {props.orderData.country}
       </p>
     </div>
   );
