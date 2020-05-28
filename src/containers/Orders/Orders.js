@@ -17,17 +17,14 @@ class Orders extends Component {
     if (!this.props.loading) {
       loading = (
         <div>
-          {this.props.orders.map((order) => {
-            console.log(order);
-            return (
-              <Order
-                price={order.price}
-                ingredients={order.ingredients}
-                orderData={order.orderData}
-                key={order.id}
-              />
-            );
-          })}
+          {this.props.orders.map((order) => (
+            <Order
+              price={order.price}
+              ingredients={order.ingredients}
+              orderData={order.o}
+              key={order.id}
+            />
+          ))}
         </div>
       );
     }
